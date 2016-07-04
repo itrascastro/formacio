@@ -1,5 +1,5 @@
 <?php
 
-// Testing getting database credentials from heroku's environment vars
+require_once '../config.php';
 
-// echo getenv('CLEARDB_DATABASE_USERNAME');
+echo DATABASE_USERNAME;
