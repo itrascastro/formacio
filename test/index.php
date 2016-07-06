@@ -2,6 +2,8 @@
 
 require_once '../config.php';
 
-$tables = $db->query("select * from information_schema.tables");
+$sth = $db->prepare("select * from information_schema.tables");
+$sth->execute();
+$result = $sth->fetchAll();
 
-var_dump($tables);
+var_dump($result);
