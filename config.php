@@ -1,13 +1,16 @@
 <?php
 
-$username = getenv('CLEARDB_DATABASE_USERNAME');
-$password = getenv('CLEARDB_DATABASE_PASSWORD');
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-// localhost
-if (!$username || !$password) {
-  $username = 'root';
-  $password = 'bo123456';
+$host = $url["host"];
+$user = $url["user"];
+$pass = $url["pass"];
+$dbname = substr($url["path"], 1);
+
+try {
+    $db = new PDO("mysql:host=".$host."; dbname=".$dbname, $user, $pass);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
 }
-
-define('DATABASE_USERNAME', $username);
-define('DATABASE_PASSWORD', $password);

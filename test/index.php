@@ -2,15 +2,6 @@
 
 require_once '../config.php';
 
-// echo DATABASE_USERNAME;
+$tables = $db->query("select * from information_schema.tables");
 
-echo 'testing c9.io';
-
-$n = 10;
-
-$n2 = 11;
-
-$res = $n + $n2;
-
-echo $res;
-
+var_dump($tables);
