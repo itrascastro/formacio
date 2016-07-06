@@ -1,6 +1,6 @@
 <?php
 
-require_once '../config.php';
+require_once '../database.php';
 
 $sth = $db->prepare("select * from information_schema.tables");
 $sth->execute();
